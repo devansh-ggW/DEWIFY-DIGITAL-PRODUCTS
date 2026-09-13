@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Launch — Replace Me</title>
+<style>
+:root{--bg:#f5f5f0;--text:#141414;--muted:#75756f;--accent:#3b36ff;--card:#fff;--line:#dddcd4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}.wrap{width:min(1040px,92%);margin:auto}.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}.logo{font-weight:900}.button{background:var(--accent);color:#fff;padding:11px 16px;border-radius:10px;text-decoration:none;font-weight:800}
+.hero{text-align:center;padding:95px 0 80px}.hero h1{font-size:clamp(45px,7vw,80px);line-height:.95;letter-spacing:-.06em;max-width:850px;margin:15px auto}.hero p{color:var(--muted);font-size:18px;max-width:600px;margin:0 auto 28px}
+.count{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:35px 0}.box{min-width:88px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:17px}.value{font-size:30px;font-weight:900}.label{font-size:11px;color:var(--muted);text-transform:uppercase}
+.signup{max-width:580px;margin:auto;background:var(--card);border:1px solid var(--line);padding:28px;border-radius:22px}.row{display:flex;gap:10px}.row input{flex:1;padding:13px;border-radius:10px;border:1px solid var(--line);font:inherit}.note{font-size:12px;color:var(--muted);margin-top:10px}.footer{padding:30px 0;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:640px){.row{flex-direction:column}}
+</style>
+<script>
+function startCountdown(target){const els={d:document.getElementById('d'),h:document.getElementById('h'),m:document.getElementById('m'),s:document.getElementById('s')};function tick(){const diff=Math.max(0,target-Date.now());const sec=Math.floor(diff/1000);els.d.textContent=Math.floor(sec/86400);els.h.textContent=Math.floor(sec%86400/3600);els.m.textContent=Math.floor(sec%3600/60);els.s.textContent=sec%60;}tick();setInterval(tick,1000)}document.addEventListener('DOMContentLoaded',()=>startCountdown(Date.now()+7*86400000));function fakeSubmit(e){e.preventDefault();alert('Replace this demo handler with your real form or checkout.')}
+</script>
+</head><body><div class="wrap">
+<nav class="nav"><div class="logo">YOUR BRAND</div><a class="button" href="#signup">Notify Me</a></nav>
+<section class="hero"><div style="font-size:12px;color:var(--muted);letter-spacing:.12em">COMING SOON / EDIT ME</div><h1>Something better is almost here.</h1><p>Perfect for product launches, waitlists, drops, apps, courses, or events.</p><div class="count"><div class="box"><div id="d" class="value">0</div><div class="label">Days</div></div><div class="box"><div id="h" class="value">0</div><div class="label">Hours</div></div><div class="box"><div id="m" class="value">0</div><div class="label">Minutes</div></div><div class="box"><div id="s" class="value">0</div><div class="label">Seconds</div></div></div></section>
+<section id="signup" class="signup"><h2>Get early access.</h2><form onsubmit="fakeSubmit(event)" class="row"><input type="email" placeholder="you@example.com" required><button class="button" type="submit">Join Waitlist</button></form><div class="note">Demo form — replace the handler with your real endpoint.</div></section>
+<footer class="footer">© 2026 YOUR BRAND</footer></div></body></html>
