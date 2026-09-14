@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="DEWIFY visual website builder">
+<title>DEWIFY BUILDER</title>
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<div class="app" id="app">
+<header class="topbar">
+  <div class="topbar-left">
+    <a class="brand" href="index.html">DEWIFY</a>
+    <div class="project-name-wrap"><input id="projectName" aria-label="Project name" value="Untitled Website"></div>
+  </div>
+  <div class="topbar-center">
+    <button class="icon-btn" id="undoBtn" title="Undo" aria-label="Undo">↶</button>
+    <button class="icon-btn" id="redoBtn" title="Redo" aria-label="Redo">↷</button>
+    <span class="divider"></span>
+    <button class="device-btn active" data-device="desktop">Desktop</button>
+    <button class="device-btn" data-device="tablet">Tablet</button>
+    <button class="device-btn" data-device="mobile">Mobile</button>
+  </div>
+  <div class="topbar-right">
+    <button class="ghost-btn" id="previewBtn">Preview</button>
+    <button class="ghost-btn" id="saveBtn">Save</button>
+    <button class="primary-btn" id="exportBtn">Export HTML</button>
+  </div>
+</header>
+
+<div class="workspace">
+  <aside class="left-panel">
+    <div class="panel-title">Build</div>
+    <div class="tabs" id="insertTabs">
+      <button class="tab active" data-tab="sections">Sections</button>
+      <button class="tab" data-tab="elements">Elements</button>
+    </div>
+    <div class="library" id="library"></div>
+  </aside>
+
+  <main class="canvas-area">
+    <div class="canvas-toolbar">
+      <div><span class="status-dot"></span><span id="saveStatus">Saved locally</span></div>
+      <button class="mini-btn" id="zoomOut">−</button>
+      <span id="zoomLabel">100%</span>
+      <button class="mini-btn" id="zoomIn">+</button>
+    </div>
+    <div class="canvas-scroll">
+      <div class="canvas-frame desktop" id="canvasFrame">
+        <div class="site" id="siteCanvas" tabindex="0" aria-label="Website canvas"></div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="right-panel">
+    <div class="panel-title">Properties</div>
+    <div id="inspector" class="inspector">
+      <div class="empty-state">Select a section or element on the canvas to edit it.</div>
+    </div>
+  </aside>
+</div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="editor.js"></script>
+</body>
+</html>
