@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#020503">
+<meta name="description" content="ASCEND Security — local scam, phishing and suspicious-file analyzer by DEWIFY.">
+<title>ASCEND // Security Analyzer</title>
+<link rel="icon" href="icon.ico" type="image/x-icon">
+<link rel="stylesheet" href="ascend-security.css">
+</head>
+<body>
+<div class="scanlines"></div><div class="noise"></div>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="shield" aria-hidden="true">S</span><span><b>ASCEND</b><small>DEWIFY SECURITY</small></span></a>
+  <div class="status"><i></i> LOCAL ENGINE ONLINE <span id="engineStatus">READY</span></div>
+</header>
+<main class="shell">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">// THREAT ANALYSIS CONSOLE</div>
+      <h1>SCAN. <span>VERIFY.</span><br>DON'T GET PLAYED.</h1>
+      <p>Analyze suspicious links, messages and files directly in your browser. ASCEND uses deterministic security heuristics and local file hashing without uploading your content.</p>
+    </div>
+    <div class="terminal-mini"><div>ASCEND SECURE SHELL v0.1</div><div>&gt; engine.boot()</div><div>&gt; rules.loaded: <b>42</b></div><div>&gt; cloud_verdict: <span>NOT CONNECTED</span></div><div>&gt; ready_</div></div>
+  </section>
+
+  <nav class="tabs" aria-label="Scan type">
+    <button class="tab active" data-mode="url">URL SCAN</button>
+    <button class="tab" data-mode="message">MESSAGE SCAN</button>
+    <button class="tab" data-mode="file">FILE SCAN</button>
+    <button class="tab" data-mode="history">HISTORY</button>
+  </nav>
+
+  <section id="panel-url" class="panel active">
+    <div class="panel-head"><div><span class="num">01</span><h2>URL RECON</h2><p>Inspect a website address for phishing and impersonation signals.</p></div><span class="live">● LIVE</span></div>
+    <form id="urlForm" class="input-row"><input id="urlInput" type="text" autocomplete="off" spellcheck="false" placeholder="https://example.com/login"><button>START SCAN ↵</button></form>
+    <div class="hint">ASCEND checks scheme, hostname structure, punycode, IP hosts, suspicious terms, subdomains, ports and URL obfuscation.</div>
+  </section>
+
+  <section id="panel-message" class="panel">
+    <div class="panel-head"><div><span class="num">02</span><h2>MESSAGE RECON</h2><p>Paste a suspicious SMS, email or DM. Nothing is sent anywhere.</p></div><span class="live">● LOCAL</span></div>
+    <textarea id="messageInput" rows="8" placeholder="Paste the suspicious message here..."></textarea>
+    <div class="input-row"><button id="messageScan">ANALYZE MESSAGE ↵</button></div>
+  </section>
+
+  <section id="panel-file" class="panel">
+    <div class="panel-head"><div><span class="num">03</span><h2>FILE RECON</h2><p>Inspect a file's metadata and calculate a SHA-256 fingerprint locally.</p></div><span class="live">● LOCAL</span></div>
+    <label class="dropzone" id="dropzone"><input id="fileInput" type="file" hidden><strong>DROP FILE HERE</strong><span>or click to choose a file</span><small>ASCEND does not execute or upload the file.</small></label>
+  </section>
+
+  <section id="panel-history" class="panel">
+    <div class="panel-head"><div><span class="num">04</span><h2>SCAN HISTORY</h2><p>Stored only in this browser.</p></div><button id="clearHistory" class="ghost">CLEAR</button></div>
+    <div id="historyList" class="history-list"></div>
+  </section>
+
+  <section id="result" class="result hidden" aria-live="polite">
+    <div class="result-head"><div><span class="num">RESULT</span><h2 id="resultTitle">ANALYSIS COMPLETE</h2></div><span id="riskBadge" class="badge">UNKNOWN</span></div>
+    <div class="scoreline"><div class="meter"><span id="meterFill"></span></div><strong id="scoreValue">0/100</strong></div>
+    <div id="resultSummary" class="summary"></div>
+    <div id="findings" class="findings"></div>
+    <details class="technical"><summary>TECHNICAL OUTPUT</summary><pre id="technicalOutput"></pre></details>
+    <div class="result-actions"><button id="newScan">NEW SCAN</button><button id="copyReport">COPY REPORT</button></div>
+  </section>
+
+  <section class="disclaimer"><b>IMPORTANT:</b> ASCEND is a browser-based security analyzer, not a full antivirus engine. A clean local heuristic result does <strong>not</strong> prove a file or site is safe. Deep malware/reputation verdicts require a trusted scanning backend and multiple security engines.</section>
+</main>
+<footer><span>ASCEND // DEWIFY</span><span>LOCAL-FIRST SECURITY ANALYZER</span></footer>
+<script src="ascend-security.js"></script>
+</body>
+</html>
