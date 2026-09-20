@@ -27,7 +27,7 @@
   <h1>BUY ONCE.<br><span style="color:var(--gold)">BUILD WITH IT.</span></h1>
   <p>Ready-to-use digital products built for creators, builders and people who want useful assets—not filler.</p>
 </section>
-<div class="banner" id="setupBanner"><strong>Store setup:</strong> prices fall back to the $9.99 base until the live Paddle client token and price IDs are added. Once configured, Paddle Price Preview automatically detects the visitor's country and returns the localized price; checkout uses the same Paddle price.</div>
+<div class="banner" id="setupBanner"><strong>Store setup:</strong> after the live Paddle token, product price IDs, and delivery endpoint are configured, the page shows Paddle's localized price and sends buyers directly to their download after the completed purchase.</div>
 
 <section class="grid">
 <article class="card">
@@ -39,7 +39,7 @@
     <div class="meta"><span class="chip">100 WEBSITES</span><span class="chip">100 DESIGNS</span><span class="chip">100 PROMPT PACKS</span><span class="chip">1,500+ PROMPTS</span></div>
     <div class="price-row"><div class="price" id="creator-price">$9.99</div><div class="status" id="creator-status">Base price</div></div>
     <button class="btn primary" id="creator-buy" style="width:100%;margin-top:15px">Buy Creator Vault 300 →</button>
-    <p class="note">One-time digital purchase. Taxes, if applicable, are shown by Paddle at checkout.</p>
+    <p class="note">One-time digital purchase. Taxes, if applicable, are shown by Paddle. After a completed purchase, DEWIFY verifies the transaction server-side and starts the direct browser download.</p>
   </div>
 </article>
 
@@ -63,6 +63,7 @@
 <script>
 const CONFIG = {
   token: "REPLACE_WITH_LIVE_CLIENT_SIDE_TOKEN",
+  deliveryEndpoint: "REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL",
   products: {
     creator: { priceId: "REPLACE_WITH_CREATOR_VAULT_PRICE_ID" },
     arc: { priceId: "REPLACE_WITH_AI_MONEY_ARC_PRICE_ID" }
@@ -71,8 +72,11 @@ const CONFIG = {
 
 const $ = (id) => document.getElementById(id);
 const ready = CONFIG.token.startsWith("live_") &&
+  CONFIG.deliveryEndpoint.startsWith("https://") &&
   CONFIG.products.creator.priceId.startsWith("pri_") &&
   CONFIG.products.arc.priceId.startsWith("pri_");
+
+let activeProductKey = null;
 
 function setStatus(kind, text) {
   $(kind + "-status").textContent = text;
@@ -87,7 +91,15 @@ async function initStore() {
 
   Paddle.Initialize({
     token: CONFIG.token,
-    checkout: { settings: { displayMode: "overlay", variant: "one-page", theme: "dark", locale: "en" } }
+    checkout: { settings: { displayMode: "overlay", variant: "one-page", theme: "dark", locale: "en" } },
+    eventCallback: function(data) {
+      if (data && data.name === "checkout.completed" && data.data && data.data.transaction_id && activeProductKey) {
+        const url = CONFIG.deliveryEndpoint +
+          "?action=authorize&product=" + encodeURIComponent(activeProductKey) +
+          "&txn=" + encodeURIComponent(data.data.transaction_id);
+        window.location.assign(url);
+      }
+    }
   });
 
   try {
@@ -123,16 +135,18 @@ async function initStore() {
   }
 }
 
-function openCheckout(priceId) {
+function openCheckout(productKey) {
   if (!ready || !window.Paddle) return;
+  activeProductKey = productKey;
+  const priceId = CONFIG.products[productKey].priceId;
   Paddle.Checkout.open({
     items: [{ priceId, quantity: 1 }],
-    settings: { displayMode: "overlay", variant: "one-page", theme: "dark", locale: "en", successUrl: location.origin + "/thank-you.html" }
+    settings: { displayMode: "overlay", variant: "one-page", theme: "dark", locale: "en" }
   });
 }
 
-$("creator-buy").addEventListener("click", () => openCheckout(CONFIG.products.creator.priceId));
-$("arc-buy").addEventListener("click", () => openCheckout(CONFIG.products.arc.priceId));
+$("creator-buy").addEventListener("click", () => openCheckout("creator"));
+$("arc-buy").addEventListener("click", () => openCheckout("arc"));
 initStore();
 </script>
 </body>
