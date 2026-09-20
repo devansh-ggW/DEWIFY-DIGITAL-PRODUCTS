@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070707">
+<link rel="icon" href="icon.ico" type="image/x-icon">
+<title>DEWIFY — AI Money Arc</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#070707;color:#f4f2ec;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;place-items:center}
+.box{width:min(680px,90%);text-align:center;border:1px solid rgba(244,242,236,.14);background:#0e0e0e;border-radius:24px;padding:52px 30px;box-shadow:0 30px 90px rgba(0,0,0,.28)}
+.eyebrow{font-size:10px;letter-spacing:.22em;color:#d9b36b;font-weight:900}
+h1{font-size:clamp(48px,8vw,82px);line-height:.9;letter-spacing:-.075em;margin:14px 0}
+p{color:#a3a097;font-size:14px;line-height:1.7;max-width:560px;margin:0 auto}
+.btn{display:inline-flex;margin-top:24px;padding:14px 20px;border-radius:12px;background:#f4f2ec;color:#080808;font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;text-decoration:none}
+.note{margin-top:16px;font-size:10px;color:#66625b}
+</style>
+</head>
+<body>
+<main class="box">
+<div class="eyebrow">DEWIFY / ORDER COMPLETE</div>
+<h1>AI MONEY ARC.</h1>
+<p>Your purchase is confirmed. Your digital book is ready below.</p>
+<a class="btn" id="download" href="downloads/AI-MONEY-ARC.pdf" download>Download the ebook →</a>
+<div class="note">AI Money Arc · Marco Vex · PDF</div>
+</main>
+<script>
+const link=document.getElementById("download");
+setTimeout(()=>link.click(),400);
+</script>
+</body>
+</html>
